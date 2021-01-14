@@ -1,2 +1,2 @@
-# Weather-App
-Current and 5 day forecast by city.
+# Code-Quiz
+Multiple choice quiz game built with JavaScript
