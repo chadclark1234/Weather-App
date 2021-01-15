@@ -1,52 +1,66 @@
-const APIKey = "3a623ea6ade278ada9b6b26990b8755d";
+$(document).ready(function () {
+  const APIKey = "3a623ea6ade278ada9b6b26990b8755d";
 
-//FUNCTION TO PASS IN CITY NAME FROM LISTENER BELOW\\
-function weatherApp(cityName) {
-  // URL TO API FOR CURRENT WEATHER BY CITY \\
-  const cityQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
+  //FUNCTION TO PASS IN CITY NAME FROM LISTENER BELOW\\
+  function weatherApp(cityName) {
+    // URL TO API FOR CURRENT WEATHER BY CITY \\
+    const cityQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
 
-  // URL TO API FOR 2HR/5DAY FORECAST BY CITY \\
-  const fiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
+    // URL TO API FOR 2HR/5DAY FORECAST BY CITY \\
+    const fiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
 
-  // CURRENT CITY WEATHER \\
-  $.ajax({
-    url: cityQueryURL,
-    method: "GET",
-  }).then(function (response) {
-    console.log(response);
-    currentTemp = Math.trunc((response.main.temp - 273.15) * 1.8 + 32);
-    humidity = response.main.humidity;
-    windSpeed = response.wind.speed;
+    // CURRENT CITY WEATHER \\
+    $.ajax({
+      url: cityQueryURL,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+      currentTemp = Math.trunc((response.main.temp - 273.15) * 1.8 + 32);
+      humidity = response.main.humidity;
+      windSpeed = Number(response.wind.speed.toFixed(1));
+      console.log(currentTemp);
+      console.log(humidity);
+      console.log(windSpeed);
+    });
 
-    console.log(humidity);
-    console.log(windSpeed);
+    // 2HR-5 DAY FORCAST \\
+    $.ajax({
+      url: fiveDayURL,
+      method: "GET",
+    }).then(function (fiveDay) {
+      console.log(fiveDay);
+      console.log(fiveDay.list[0].main.temp);
+    });
+  }
+
+  // BUILDING INPUT CITY ELEMENT \\
+  let searchCityInputBox = $("<input>");
+  searchCityInputBox.addClass("cityNameInput");
+  searchCityInputBox.attr("value");
+  $("#city").append(searchCityInputBox);
+
+  // BUILDING THE SEARCH BUTTON \\
+  let button = $("<button>");
+  button.addClass("btn-1");
+  button.attr("data-name", "btn0");
+  button.text("Search");
+  $("#city").append(button);
+
+  // SEARCH BUTTON LISTENER \\
+
+  $(".btn-1").on("click", function () {
+    let cityName = $(".cityNameInput").val();
+    weatherApp(cityName);
+    addCityButtons(cityName);
   });
 
-  // 2HR-5 DAY FORCAST \\
-  $.ajax({
-    url: fiveDayURL,
-    method: "GET",
-  }).then(function (response) {
-    console.log(response);
-  });
-}
-
-// BUILDING INPUT CITY ELEMENT \\
-let searchCityInputBox = $("<input>");
-searchCityInputBox.addClass("cityNameInput");
-searchCityInputBox.attr("value");
-$("#city").append(searchCityInputBox);
-
-// BUILDING THE SEARCH BUTTON \\
-let button = $("<button>");
-button.addClass("btn-1");
-button.attr("data-name", "btn0");
-button.text("Search");
-$("#city").append(button);
-
-// SEARCH BUTTON LISTENER \\
-
-$(".btn-1").on("click", function () {
-  let cityName = $(".cityNameInput").val();
-  weatherApp(cityName);
+  //ADD CITY BUTTONS FUNCTION
+  function addCityButtons(cityName) {
+    console.log(cityName);
+    let button = $("<button>");
+    button.addClass("btn-1");
+    button.attr("data-name", "btn0");
+    button.text(cityName);
+    $("#city").append(button);
+  }
 });
