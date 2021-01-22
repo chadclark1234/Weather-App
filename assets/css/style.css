@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+.main.container {
+  background-color: rgb(221, 219, 219);
+  height: 35rem;
+}
+.container {
+  margin: 1rem;
+}
+.new-city-button {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+/* div.row.current-display {
+  align-items: center;
+  height: 10rem;
+} */

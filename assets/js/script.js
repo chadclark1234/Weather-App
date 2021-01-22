@@ -1,66 +1,125 @@
 $(document).ready(function () {
-  const APIKey = "3a623ea6ade278ada9b6b26990b8755d";
+  //TODAYS CURRENT DATE
+  let currentDate = moment().format("L");
 
-  //FUNCTION TO PASS IN CITY NAME FROM LISTENER BELOW\\
-  function weatherApp(cityName) {
+  let cityName;
+
+  $("#search-submit").on("click", function (event) {
+    event.preventDefault();
+
+    cityName = $("#city-name-input").val().trim();
+
+    //API KEY \\
+    let APIKey = "3a623ea6ade278ada9b6b26990b8755d";
+
     // URL TO API FOR CURRENT WEATHER BY CITY \\
-    const cityQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
+    let cityQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
 
     // URL TO API FOR 2HR/5DAY FORECAST BY CITY \\
-    const fiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
+    let fiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
 
-    // CURRENT CITY WEATHER \\
+    // ONE DAY WEATHER API \\
     $.ajax({
       url: cityQueryURL,
       method: "GET",
-    }).then(function (response) {
-      console.log(response);
-      currentTemp = Math.trunc((response.main.temp - 273.15) * 1.8 + 32);
-      humidity = response.main.humidity;
-      windSpeed = Number(response.wind.speed.toFixed(1));
-      console.log(currentTemp);
-      console.log(humidity);
-      console.log(windSpeed);
+    }).then(function (currentResponse) {
+      // CALL FUNCTION TO INSERT CURRENT CITY INFO \\
+      insertCurrentInfo(currentResponse);
     });
 
-    // 2HR-5 DAY FORCAST \\
-    $.ajax({
-      url: fiveDayURL,
-      method: "GET",
-    }).then(function (fiveDay) {
-      console.log(fiveDay);
-      console.log(fiveDay.list[0].main.temp);
-    });
-  }
+    // FIVE DAY WEATHER API \\
+    // $.ajax({
+    //   url: fiveDayURL,
+    //   method: "GET",
+    // }).then(function (fiveResponse) {
+    //   console.log(fiveResponse);
+    // });
 
-  // BUILDING INPUT CITY ELEMENT \\
-  let searchCityInputBox = $("<input>");
-  searchCityInputBox.addClass("cityNameInput");
-  searchCityInputBox.attr("value");
-  $("#city").append(searchCityInputBox);
+    //BUILD CITY ARRAY \\
+    citiesArr.push(cityName);
 
-  // BUILDING THE SEARCH BUTTON \\
-  let button = $("<button>");
-  button.addClass("btn-1");
-  button.attr("data-name", "btn0");
-  button.text("Search");
-  $("#city").append(button);
+    //CALL FUNCTION TO ADD CITY BUTTONS \\
+    buildButtons();
 
-  // SEARCH BUTTON LISTENER \\
-
-  $(".btn-1").on("click", function () {
-    let cityName = $(".cityNameInput").val();
-    weatherApp(cityName);
-    addCityButtons(cityName);
+    // CLEAR SEARCH TEXT BOX \\
+    document.getElementById("city-name-input").value = "";
   });
 
-  //ADD CITY BUTTONS FUNCTION
-  function addCityButtons(cityName) {
-    console.log(cityName);
-    let button = $("<button>");
-    button.addClass("btn-1");
-    button.attr("data-name", "btn0");
-    button.text(cityName);
-    $("#city").append(button);
+  //BUILD ARRAY FOR EACH ADDED CITY \\
+  let citiesArr = [];
+
+  // BUILD BUTTONS FROM SEARCH BAR \\
+  function buildButtons() {
+    $("#city-buttons-added").empty();
+
+    // BUILDING BUTTONS LOOP-RUNS AT EACH SUBMIT \\
+    for (let i = 0; i < citiesArr.length; i++) {
+      // CREATE NEW BUTTON ELEMENT \\
+      let newCityButton = $("<button>");
+      let lineBreak = $("<br>");
+
+      // ADD CLASS TO BUTTON \\
+      newCityButton.addClass("btn btn-primary new-city-button");
+      // newCityButton.addClass("btn");
+
+      // ADD DATA- ATTRIBUTE \\
+      newCityButton.attr("data-name", citiesArr[i]);
+
+      // ADD CITY NAME TEXT TO BUTTON \\
+      newCityButton.text(citiesArr[i]);
+
+      // APPEND BUTTON TO DIV \\
+      $("#city-buttons-added").prepend(newCityButton, lineBreak);
+    }
+  }
+
+  // DETERMINE WIND DIRECTION \\
+  let windDirectionCalc = function (num) {
+    if ((num >= 0 && num <= 45) || (num >= 315 && num <= 360)) {
+      return "North";
+    } else if (num >= 46 && num <= 135) {
+      return "East";
+    } else if (num >= 136 && num <= 225) {
+      return "South";
+    } else if (num >= 226 && num <= 314) {
+      return "West";
+    }
+  };
+
+  function insertCurrentInfo(currentResponse) {
+    console.log(currentResponse);
+    // CURRENT CITY AND DATE DISPLAY \\
+    let currentCityandDateDisplay = $("#current-city-date");
+    currentCityandDateDisplay.text(`${currentResponse.name} (${currentDate})`);
+
+    // CURRENT TEMPERATURE DISPLAY \\
+    let currentCityTempDisplay = $("#current-temperature");
+    let currentTempF = (
+      ((currentResponse.main.temp - 273.15) * 9) / 5 +
+      32
+    ).toFixed(2);
+    currentCityTempDisplay.text(`Temperature ${currentTempF} F`);
+
+    // CURRENT HUMIDITY DISPLAY \\
+    let currentCityHumidity = $("#current-humidity");
+    currentCityHumidity.text(`Humidity ${currentResponse.main.humidity}%`);
+
+    // CURRENT WIND SPEED \\
+    let currentCityWSDisplay = $("#current-wind-speed");
+    let num = currentResponse.wind.deg;
+    // CALL WIND-DIRECTION FUNCTION
+    windDirectionCalc(num);
+    let windDirection = windDirectionCalc(num);
+    // DISPLAY WIND SPEED AND DIRECTION \\
+    currentCityWSDisplay.text(
+      `Wind Speed ${currentResponse.wind.speed} MPH ${windDirection}`
+    );
+
+    // DISPLAY ICON \\
+    let currentImage = $("#current-weather-image");
+    let currentIcon = currentResponse.weather[0].icon;
+    console.log(currentIcon);
+    let iconSource = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
+    currentImage.attr("src", iconSource);
   }
 });
