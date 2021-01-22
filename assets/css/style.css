@@ -17,3 +17,9 @@
   align-items: center;
   height: 10rem;
 } */
+#btns-body {
+  min-height: 18rem;
+}
+#current-body {
+  min-height: 18rem;
+}

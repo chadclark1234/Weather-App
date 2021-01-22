@@ -37,7 +37,7 @@
       <div class="sub-two container">
         <!-- ROW 2 NAV/SEARCH BAR  -->
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-12" id="nav-body">
             <nav class="navbar navbar-light bg-light">
               <div class="container-fluid">
                 <form class="d-flex">
@@ -66,7 +66,7 @@
         <!-- ROW 3 CITIES/CURRENT DAY/5 DAY  -->
         <div class="row">
           <div class="col-md-3">
-            <div class="card">
+            <div class="card" id="btns-body">
               <div class="card-body">
                 <div id="city-buttons-added"></div>
               </div>
@@ -79,7 +79,7 @@
             <div class="row current-display">
               <div class="col-md-12">
                 <div class="card" style="height: auto">
-                  <div class="card-body">
+                  <div class="card-body" id="current-body">
                     <header>
                       <h4 id="current-city-date"></h4>
                     </header>
@@ -94,7 +94,8 @@
                     </header>
                     <img id="current-weather-image" src="#" alt="" />
                     <header>
-                      <h6>UV Index</h6>
+                      <!-- UV Display  -->
+                      <h6></h6>
                       <span id="current-uv-index"></span>
                     </header>
                   </div>

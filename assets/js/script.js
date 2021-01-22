@@ -83,6 +83,8 @@ $(document).ready(function () {
       return "South";
     } else if (num >= 226 && num <= 314) {
       return "West";
+    } else {
+      return "Calm";
     }
   };
 
@@ -121,5 +123,13 @@ $(document).ready(function () {
     console.log(currentIcon);
     let iconSource = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
     currentImage.attr("src", iconSource);
+  }
+
+  // ADDING LISTENER TO GENERATED BUTTONS \\
+  $(document).on("click", ".new-city-button", activateNewButton);
+
+  function activateNewButton() {
+    let city = $(this).attr("data-name");
+    console.log(city);
   }
 });
