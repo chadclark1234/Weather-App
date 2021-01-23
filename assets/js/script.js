@@ -28,12 +28,12 @@ $(document).ready(function () {
     });
 
     // FIVE DAY WEATHER API \\
-    // $.ajax({
-    //   url: fiveDayURL,
-    //   method: "GET",
-    // }).then(function (fiveResponse) {
-    //   console.log(fiveResponse);
-    // });
+    $.ajax({
+      url: fiveDayURL,
+      method: "GET",
+    }).then(function (fiveResponse) {
+      console.log(fiveResponse.list[3]["dt_txt"]);
+    });
 
     //BUILD CITY ARRAY \\
     citiesArr.push(cityName);
@@ -128,8 +128,9 @@ $(document).ready(function () {
   // ADDING LISTENER TO GENERATED BUTTONS \\
   $(document).on("click", ".new-city-button", activateNewButton);
 
+  // GENERATED BUTTONS CITY NAME \\
   function activateNewButton() {
-    let city = $(this).attr("data-name");
-    console.log(city);
+    let addedCity = $(this).attr("data-name");
+    console.log(addedCity);
   }
 });
