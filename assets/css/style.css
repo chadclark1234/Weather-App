@@ -5,8 +5,10 @@
 .main.container {
   /* background-color: rgb(221, 219, 219); */
   background-color: rgb(44, 44, 43);
-  height: 43rem;
+  height: 100%;
+  min-height: 43rem;
   margin-top: 5rem;
+  margin-bottom: 5rem;
   border-radius: 5px;
 }
 h1 {
@@ -24,8 +26,14 @@ h1 {
 #btns-body {
   min-height: 18rem;
 }
+.reset {
+  align-items: center !important;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 #current-body {
   min-height: 18rem;
+  text-align: center;
 }
 p {
   line-height: 40%;
@@ -39,4 +47,5 @@ p {
   margin-top: 1rem;
   background-color: #007bff !important;
   color: white;
+  text-align: center;
 }

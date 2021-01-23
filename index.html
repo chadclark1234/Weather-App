@@ -30,7 +30,7 @@
       <div class="sub-one container">
         <!-- ROW 1 HEADER  -->
         <div class="row">
-          <div class="col-md-10"><h1>Welcome To The Weather Pro</h1></div>
+          <div class="col-md-12"><h1>Welcome To The Weather Pro</h1></div>
           <div class="col-md-2"><h3 class="current-date-time"></h3></div>
         </div>
       </div>
@@ -38,12 +38,12 @@
         <!-- ROW 2 NAV/SEARCH BAR  -->
         <div class="row">
           <div class="col-md-12" id="nav-body">
-            <nav class="navbar navbar-light bg-light">
+            <nav class="navbar">
               <div class="container-fluid">
                 <form class="d-flex">
                   <input
                     id="city-name-input"
-                    class="form-control me-2"
+                    class="form-control me-2 text-capitalize"
                     type="search"
                     placeholder="Search for a City"
                     aria-label="Search"
@@ -65,11 +65,16 @@
       <div class="sub-three container">
         <!-- ROW 3 CITIES/CURRENT DAY/5 DAY  -->
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-3 text-center">
             <div class="card add-buttons" id="btns-body">
               <div class="card-body">
                 <div id="city-buttons-added"></div>
               </div>
+            </div>
+            <div class="reset">
+              <button id="clear" type="button" class="btn btn-primary reset">
+                Reset
+              </button>
             </div>
           </div>
 
@@ -123,9 +128,9 @@
                       src="#"
                       alt=""
                     />
-                    <h6 id="day-one-description"></h6>
-                    <p id="day-one-min-temp"></p>
-                    <p id="day-one-max-temp"></p>
+                    <h6 id="day-one-description" class="text-capitalize"></h6>
+                    <p id="day-one-temp"></p>
+
                     <p id="day-one-humidity"></p>
                   </div>
                 </div>
@@ -145,9 +150,9 @@
                       src="#"
                       alt=""
                     />
-                    <h6 id="day-two-description"></h6>
-                    <p id="day-two-min-temp"></p>
-                    <p id="day-two-max-temp"></p>
+                    <h6 id="day-two-description" class="text-capitalize"></h6>
+                    <p id="day-two-temp"></p>
+
                     <p id="day-two-humidity"></p>
                   </div>
                 </div>
@@ -167,9 +172,8 @@
                       src="#"
                       alt=""
                     />
-                    <h6 id="day-three-description"></h6>
-                    <p id="day-three-min-temp"></p>
-                    <p id="day-three-max-temp"></p>
+                    <h6 id="day-three-description" class="text-capitalize"></h6>
+                    <p id="day-three-temp"></p>
                     <p id="day-three-humidity"></p>
                   </div>
                 </div>
@@ -189,9 +193,8 @@
                       src="#"
                       alt=""
                     />
-                    <h6 id="day-four-description"></h6>
-                    <p id="day-four-min-temp"></p>
-                    <p id="day-four-max-temp"></p>
+                    <h6 id="day-four-description" class="text-capitalize"></h6>
+                    <p id="day-four-temp"></p>
                     <p id="day-four-humidity"></p>
                   </div>
                 </div>
@@ -211,9 +214,8 @@
                       src="#"
                       alt=""
                     />
-                    <h6 id="day-five-description"></h6>
-                    <p id="day-five-min-temp"></p>
-                    <p id="day-five-max-temp"></p>
+                    <h6 id="day-five-description" class="text-capitalize"></h6>
+                    <p id="day-five-temp"></p>
                     <p id="day-five-humidity"></p>
                   </div>
                 </div>
