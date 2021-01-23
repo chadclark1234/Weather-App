@@ -32,9 +32,12 @@ $(document).ready(function () {
       url: fiveDayURL,
       method: "GET",
     }).then(function (fiveResponse) {
-      console.log(fiveResponse.list[3]["weather"][0]["description"]);
       // 5 DAY BUILD FUNCTION CALLS \\
       dayOne(fiveResponse);
+      dayTwo(fiveResponse);
+      dayThree(fiveResponse);
+      dayFour(fiveResponse);
+      dayFive(fiveResponse);
     });
 
     //BUILD CITY ARRAY \\
@@ -131,7 +134,6 @@ $(document).ready(function () {
   // GENERATED BUTTONS CITY NAME \\
   function activateNewButton() {
     let addedCity = $(this).attr("data-name");
-    console.log(addedCity);
   }
 
   // DAY 1 OF FIVE DAY \\
@@ -151,5 +153,94 @@ $(document).ready(function () {
     $("#day-one-min-temp").text(`${dayOneMinTempF} F`);
     $("#day-one-max-temp").text(`${dayOneMaxTempF} F`);
     $("#day-one-humidity").text(`${dayOneHumidity} %`);
+  }
+
+  // DAY 2 OF FIVE DAY \\
+  function dayTwo(fiveResponse) {
+    let dayTwoDate = fiveResponse.list[7]["dt_txt"];
+    let dayTwoIcon = fiveResponse.list[7]["weather"][0]["icon"];
+    let dayTwoDescription = fiveResponse.list[7]["weather"][0]["description"];
+    let dayTwoMinTempK = fiveResponse.list[7]["main"]["temp_min"];
+    let dayTwoMaxTempK = fiveResponse.list[7]["main"]["temp_max"];
+    let dayTwoHumidity = fiveResponse.list[7]["main"]["humidity"];
+    let dayTwoMinTempF = (((dayTwoMinTempK - 273.15) * 9) / 5 + 32).toFixed(2);
+    let dayTwoMaxTempF = (((dayTwoMaxTempK - 273.15) * 9) / 5 + 32).toFixed(2);
+    $("#day-two-date").text(moment().add("2", "day").format("MM-DD-YYYY"));
+    let dayTwoIconString = `http://openweathermap.org/img/wn/${dayTwoIcon}@2x.png`;
+    $("#day-two-weather-image").attr("src", dayTwoIconString);
+    $("#day-two-description").text(dayTwoDescription);
+    $("#day-two-min-temp").text(`${dayTwoMinTempF} F`);
+    $("#day-two-max-temp").text(`${dayTwoMaxTempF} F`);
+    $("#day-two-humidity").text(`${dayTwoHumidity} %`);
+  }
+
+  // DAY 3 OF FIVE DAY \\
+  function dayThree(fiveResponse) {
+    let dayThreeDate = fiveResponse.list[15]["dt_txt"];
+    let dayThreeIcon = fiveResponse.list[15]["weather"][0]["icon"];
+    let dayThreeDescription =
+      fiveResponse.list[15]["weather"][0]["description"];
+    let dayThreeMinTempK = fiveResponse.list[15]["main"]["temp_min"];
+    let dayThreeMaxTempK = fiveResponse.list[15]["main"]["temp_max"];
+    let dayThreeHumidity = fiveResponse.list[15]["main"]["humidity"];
+    let dayThreeMinTempF = (((dayThreeMinTempK - 273.15) * 9) / 5 + 32).toFixed(
+      2
+    );
+    let dayThreeMaxTempF = (((dayThreeMaxTempK - 273.15) * 9) / 5 + 32).toFixed(
+      2
+    );
+    $("#day-three-date").text(moment().add("3", "day").format("MM-DD-YYYY"));
+    let dayThreeIconString = `http://openweathermap.org/img/wn/${dayThreeIcon}@2x.png`;
+    $("#day-three-weather-image").attr("src", dayThreeIconString);
+    $("#day-three-description").text(dayThreeDescription);
+    $("#day-three-min-temp").text(`${dayThreeMinTempF} F`);
+    $("#day-three-max-temp").text(`${dayThreeMaxTempF} F`);
+    $("#day-three-humidity").text(`${dayThreeHumidity} %`);
+  }
+
+  // DAY 4 OF FIVE DAY \\
+  function dayFour(fiveResponse) {
+    let dayFourDate = fiveResponse.list[23]["dt_txt"];
+    let dayFourIcon = fiveResponse.list[23]["weather"][0]["icon"];
+    let dayFourDescription = fiveResponse.list[23]["weather"][0]["description"];
+    let dayFourMinTempK = fiveResponse.list[23]["main"]["temp_min"];
+    let dayFourMaxTempK = fiveResponse.list[23]["main"]["temp_max"];
+    let dayFourHumidity = fiveResponse.list[23]["main"]["humidity"];
+    let dayFourMinTempF = (((dayFourMinTempK - 273.15) * 9) / 5 + 32).toFixed(
+      2
+    );
+    let dayFourMaxTempF = (((dayFourMaxTempK - 273.15) * 9) / 5 + 32).toFixed(
+      2
+    );
+    $("#day-four-date").text(moment().add("4", "day").format("MM-DD-YYYY"));
+    let dayFourIconString = `http://openweathermap.org/img/wn/${dayFourIcon}@2x.png`;
+    $("#day-four-weather-image").attr("src", dayFourIconString);
+    $("#day-four-description").text(dayFourDescription);
+    $("#day-four-min-temp").text(`${dayFourMinTempF} F`);
+    $("#day-four-max-temp").text(`${dayFourMaxTempF} F`);
+    $("#day-four-humidity").text(`${dayFourHumidity} %`);
+  }
+
+  // DAY 5 OF FIVE DAY \\
+  function dayFive(fiveResponse) {
+    let dayFiveDate = fiveResponse.list[7]["dt_txt"];
+    let dayFiveIcon = fiveResponse.list[7]["weather"][0]["icon"];
+    let dayFiveDescription = fiveResponse.list[3]["weather"][0]["description"];
+    let dayFiveMinTempK = fiveResponse.list[7]["main"]["temp_min"];
+    let dayFiveMaxTempK = fiveResponse.list[7]["main"]["temp_max"];
+    let dayFiveHumidity = fiveResponse.list[7]["main"]["humidity"];
+    let dayFiveMinTempF = (((dayFiveMinTempK - 273.15) * 9) / 5 + 32).toFixed(
+      2
+    );
+    let dayFiveMaxTempF = (((dayFiveMaxTempK - 273.15) * 9) / 5 + 32).toFixed(
+      2
+    );
+    $("#day-five-date").text(moment().add("5", "day").format("MM-DD-YYYY"));
+    let dayFiveIconString = `http://openweathermap.org/img/wn/${dayFiveIcon}@2x.png`;
+    $("#day-five-weather-image").attr("src", dayFiveIconString);
+    $("#day-five-description").text(dayFiveDescription);
+    $("#day-five-min-temp").text(`${dayFiveMinTempF} F`);
+    $("#day-five-max-temp").text(`${dayFiveMaxTempF} F`);
+    $("#day-five-humidity").text(`${dayFiveHumidity} %`);
   }
 });

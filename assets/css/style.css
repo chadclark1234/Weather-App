@@ -3,11 +3,15 @@
   box-sizing: border-box;
 }
 .main.container {
-  background-color: rgb(221, 219, 219);
-  height: 39rem;
+  /* background-color: rgb(221, 219, 219); */
+  background-color: rgb(44, 44, 43);
+  height: 43rem;
+  margin-top: 5rem;
+  border-radius: 5px;
 }
-.container {
-  margin: 1rem;
+h1 {
+  color: white;
+  text-align: center;
 }
 .new-city-button {
   margin-top: 0.25rem;
@@ -24,5 +28,15 @@
   min-height: 18rem;
 }
 p {
-  size: 5px;
+  line-height: 40%;
+}
+.current-display,
+.add-buttons {
+  margin-top: 1rem;
+}
+.forecast {
+  min-height: 14rem;
+  margin-top: 1rem;
+  background-color: #007bff !important;
+  color: white;
 }
