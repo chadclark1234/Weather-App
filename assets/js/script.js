@@ -141,6 +141,8 @@ $(document).ready(function () {
   // GENERATED BUTTONS CITY NAME \\
   function activateNewButton() {
     let addedCity = $(this).attr("data-name");
+    console.log(addedCity);
+    return addedCity;
   }
 
   // DAY 1 OF FIVE DAY \\
@@ -156,7 +158,7 @@ $(document).ready(function () {
     $("#day-one-weather-image").attr("src", dayOneIconString);
     $("#day-one-description").text(dayOneDescription);
     $("#day-one-temp").text(`${dayOneTempF} F`);
-    $("#day-one-humidity").text(`H ${dayOneHumidity} %`);
+    $("#day-one-humidity").text(`H ${dayOneHumidity}%`);
   }
 
   // DAY 2 OF FIVE DAY \\
@@ -172,7 +174,7 @@ $(document).ready(function () {
     $("#day-two-weather-image").attr("src", dayTwoIconString);
     $("#day-two-description").text(dayTwoDescription);
     $("#day-two-temp").text(`${dayTwoTempF} F`);
-    $("#day-two-humidity").text(`H ${dayTwoHumidity} %`);
+    $("#day-two-humidity").text(`H ${dayTwoHumidity}%`);
   }
 
   // DAY 3 OF FIVE DAY \\
@@ -189,7 +191,7 @@ $(document).ready(function () {
     $("#day-three-weather-image").attr("src", dayThreeIconString);
     $("#day-three-description").text(dayThreeDescription);
     $("#day-three-temp").text(`${dayThreeTempF} F`);
-    $("#day-three-humidity").text(`H ${dayThreeHumidity} %`);
+    $("#day-three-humidity").text(`H ${dayThreeHumidity}%`);
   }
 
   // DAY 4 OF FIVE DAY \\
@@ -205,7 +207,7 @@ $(document).ready(function () {
     $("#day-four-weather-image").attr("src", dayFourIconString);
     $("#day-four-description").text(dayFourDescription);
     $("#day-four-temp").text(`${dayFourTempF} F`);
-    $("#day-four-humidity").text(`H ${dayFourHumidity} %`);
+    $("#day-four-humidity").text(`H ${dayFourHumidity}%`);
   }
 
   // DAY 5 OF FIVE DAY \\
@@ -221,7 +223,7 @@ $(document).ready(function () {
     $("#day-five-weather-image").attr("src", dayFiveIconString);
     $("#day-five-description").text(dayFiveDescription);
     $("#day-five-temp").text(`${dayFiveTempF} F`);
-    $("#day-five-humidity").text(`H ${dayFiveHumidity} %`);
+    $("#day-five-humidity").text(`H ${dayFiveHumidity}%`);
   }
 
   // BUTTON TO CLEAR LOCAL STORAGE \\
