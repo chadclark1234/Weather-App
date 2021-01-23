@@ -32,7 +32,9 @@ $(document).ready(function () {
       url: fiveDayURL,
       method: "GET",
     }).then(function (fiveResponse) {
-      console.log(fiveResponse.list[3]["dt_txt"]);
+      console.log(fiveResponse.list[3]["weather"][0]["description"]);
+      // 5 DAY BUILD FUNCTION CALLS \\
+      dayOne(fiveResponse);
     });
 
     //BUILD CITY ARRAY \\
@@ -89,7 +91,6 @@ $(document).ready(function () {
   };
 
   function insertCurrentInfo(currentResponse) {
-    console.log(currentResponse);
     // CURRENT CITY AND DATE DISPLAY \\
     let currentCityandDateDisplay = $("#current-city-date");
     currentCityandDateDisplay.text(`${currentResponse.name} (${currentDate})`);
@@ -120,7 +121,6 @@ $(document).ready(function () {
     // DISPLAY ICON \\
     let currentImage = $("#current-weather-image");
     let currentIcon = currentResponse.weather[0].icon;
-    console.log(currentIcon);
     let iconSource = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
     currentImage.attr("src", iconSource);
   }
@@ -132,5 +132,24 @@ $(document).ready(function () {
   function activateNewButton() {
     let addedCity = $(this).attr("data-name");
     console.log(addedCity);
+  }
+
+  // DAY 1 OF FIVE DAY \\
+  function dayOne(fiveResponse) {
+    let dayOneDate = fiveResponse.list[3]["dt_txt"];
+    let dayOneIcon = fiveResponse.list[3]["weather"][0]["icon"];
+    let dayOneDescription = fiveResponse.list[3]["weather"][0]["description"];
+    let dayOneMinTempK = fiveResponse.list[3]["main"]["temp_min"];
+    let dayOneMaxTempK = fiveResponse.list[3]["main"]["temp_max"];
+    let dayOneHumidity = fiveResponse.list[3]["main"]["humidity"];
+    let dayOneMinTempF = (((dayOneMinTempK - 273.15) * 9) / 5 + 32).toFixed(2);
+    let dayOneMaxTempF = (((dayOneMaxTempK - 273.15) * 9) / 5 + 32).toFixed(2);
+    $("#day-one-date").text(moment().add("1", "day").format("MM-DD-YYYY"));
+    let dayOneIconString = `http://openweathermap.org/img/wn/${dayOneIcon}@2x.png`;
+    $("#day-one-weather-image").attr("src", dayOneIconString);
+    $("#day-one-description").text(dayOneDescription);
+    $("#day-one-min-temp").text(`${dayOneMinTempF} F`);
+    $("#day-one-max-temp").text(`${dayOneMaxTempF} F`);
+    $("#day-one-humidity").text(`${dayOneHumidity} %`);
   }
 });

@@ -4,7 +4,7 @@
 }
 .main.container {
   background-color: rgb(221, 219, 219);
-  height: 35rem;
+  height: 39rem;
 }
 .container {
   margin: 1rem;
@@ -22,4 +22,7 @@
 }
 #current-body {
   min-height: 18rem;
+}
+p {
+  size: 5px;
 }
