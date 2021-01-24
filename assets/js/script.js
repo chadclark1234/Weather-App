@@ -125,7 +125,7 @@ $(document).ready(function () {
     // CURRENT TEMPERATURE DISPLAY \\
     let currentCityTempDisplay = $("#current-temperature");
     let currentTempF = newTempF(currentResponse.main.temp);
-    currentCityTempDisplay.text(`Temperature ${currentTempF} F`);
+    currentCityTempDisplay.text(`Temperature ${currentTempF}F`);
 
     // CURRENT HUMIDITY DISPLAY \\
     let currentCityHumidity = $("#current-humidity");

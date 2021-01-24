@@ -19,10 +19,6 @@ h1 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
-/* div.row.current-display {
-  align-items: center;
-  height: 10rem;
-} */
 #btns-body {
   min-height: 1rem;
 }
@@ -35,6 +31,10 @@ h1 {
 #current-body {
   min-height: 18rem;
   text-align: center;
+}
+#current-div-display {
+  background-color: #4b9ffa;
+  color: white;
 }
 p {
   line-height: 40%;
