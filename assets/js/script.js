@@ -33,6 +33,19 @@ $(document).ready(function () {
       url: cityQueryURL,
       method: "GET",
     }).then(function (currentResponse) {
+      lat = currentResponse.coord.lat;
+      lon = currentResponse.coord.lon;
+      // URL TO API FOR UV INDEX \\
+      const uvQueryURL = `http://api.openweathermap.org/data/2.5/uvi/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+      // UV INDEX API \\
+      $.ajax({
+        url: uvQueryURL,
+        method: "GET",
+      }).then(function (uvResponse) {
+        let currentUVindex = uvResponse[0]["value"];
+        currentUVdisplay(currentUVindex);
+      });
+
       // CALL FUNCTION TO INSERT CURRENT CITY INFO \\
       insertCurrentInfo(currentResponse);
     });
@@ -42,6 +55,7 @@ $(document).ready(function () {
       url: fiveDayURL,
       method: "GET",
     }).then(function (fiveResponse) {
+      // console.log(fiveResponse);
       // 5 DAY BUILD FUNCTION CALLS \\
       dayOne(fiveResponse);
       dayTwo(fiveResponse);
@@ -134,6 +148,28 @@ $(document).ready(function () {
     let iconSource = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
     currentImage.attr("src", iconSource);
   }
+
+  // UV INDEX DISPLAY \\
+  const currentUVdisplay = (currentUVindex) => {
+    console.log(currentUVindex);
+    let uvDisplay = $("#current-uv-index");
+    if (currentUVindex <= 2) {
+      uvDisplay.text(` UV Index: ${currentUVindex} `);
+      uvDisplay.css("background-color", "green");
+    } else if (currentUVindex > 2 && currentUVindex <= 5) {
+      uvDisplay.text(` UV Index: ${currentUVindex} `);
+      uvDisplay.css("background-color", "yellow");
+    } else if (currentUVindex > 5 && currentUVindex <= 7) {
+      uvDisplay.text(` UV Index: ${currentUVindex} `);
+      uvDisplay.css("background-color", "orange");
+    } else if (currentUVindex > 7 && currentUVindex <= 10) {
+      uvDisplay.text(` UV Index: ${currentUVindex} `);
+      uvDisplay.css("background-color", "red");
+    } else if (currentUVindex > 10) {
+      uvDisplay.text(` UV Index: ${currentUVindex} `);
+      uvDisplay.css("background-color", "purple");
+    }
+  };
 
   // ADDING LISTENER TO GENERATED BUTTONS \\
   $(document).on("click", ".new-city-button", activateNewButton);

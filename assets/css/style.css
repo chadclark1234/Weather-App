@@ -24,8 +24,9 @@ h1 {
   height: 10rem;
 } */
 #btns-body {
-  min-height: 18rem;
+  min-height: 1rem;
 }
+
 .reset {
   align-items: center !important;
   margin-top: 1rem;
