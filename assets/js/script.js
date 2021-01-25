@@ -18,6 +18,7 @@ $(document).ready(function () {
   //RUN API ON PAGE LOAD WITH LAST CITY \\
   getWeather(defaultCity);
 
+  //SUBMIT BUTTON LISTENER \\
   $("#search-submit").on("click", function (event) {
     event.preventDefault();
 
@@ -27,6 +28,8 @@ $(document).ready(function () {
     if (cityName === "") {
       cityName = defaultCity;
     }
+
+    // API CALL FUNCTION \\
     getWeather(cityName);
 
     //BUILD CITY ARRAY \\
@@ -39,6 +42,7 @@ $(document).ready(function () {
     buildButtons();
   });
 
+  // API FUNCTION \\
   function getWeather(cityName) {
     //API KEY \\
     let APIKey = "3a623ea6ade278ada9b6b26990b8755d";
@@ -63,7 +67,6 @@ $(document).ready(function () {
         url: uvQueryURL,
         method: "GET",
       }).then(function (uvResponse) {
-        console.log(uvResponse);
         let currentUVindex = Math.trunc(uvResponse["value"]);
         currentUVdisplay(currentUVindex);
       });
@@ -130,6 +133,7 @@ $(document).ready(function () {
     }
   };
 
+  // CURRENT WEATHER CONDITIONS \\
   function insertCurrentInfo(currentResponse) {
     // CURRENT CITY AND DATE DISPLAY \\
     let currentCityandDateDisplay = $("#current-city-date");
@@ -166,7 +170,6 @@ $(document).ready(function () {
 
   // UV INDEX DISPLAY \\
   const currentUVdisplay = (currentUVindex) => {
-    console.log(currentUVindex);
     let uvDisplay = $("#current-uv-index");
     uvDisplay.css("color", "white");
     if (currentUVindex <= 2) {
@@ -211,8 +214,8 @@ $(document).ready(function () {
     let dayOneIconString = `http://openweathermap.org/img/wn/${dayOneIcon}@2x.png`;
     $("#day-one-weather-image").attr("src", dayOneIconString);
     $("#day-one-description").text(dayOneDescription);
-    $("#day-one-temp").text(`${dayOneTempF} F`);
-    $("#day-one-humidity").text(`Humidity ${dayOneHumidity}%`);
+    $("#day-one-temp").html(`<span>${dayOneTempF}\&#176 F</span>`);
+    $("#day-one-humidity").text(`H ${dayOneHumidity}%`);
   }
 
   // DAY 2 OF FIVE DAY \\
@@ -227,8 +230,8 @@ $(document).ready(function () {
     let dayTwoIconString = `http://openweathermap.org/img/wn/${dayTwoIcon}@2x.png`;
     $("#day-two-weather-image").attr("src", dayTwoIconString);
     $("#day-two-description").text(dayTwoDescription);
-    $("#day-two-temp").text(`${dayTwoTempF} F`);
-    $("#day-two-humidity").text(`Humidity ${dayTwoHumidity}%`);
+    $("#day-two-temp").html(`<span>${dayTwoTempF}\&#176 F</span>`);
+    $("#day-two-humidity").text(` ${dayTwoHumidity}%`);
   }
 
   // DAY 3 OF FIVE DAY \\
@@ -244,8 +247,8 @@ $(document).ready(function () {
     let dayThreeIconString = `http://openweathermap.org/img/wn/${dayThreeIcon}@2x.png`;
     $("#day-three-weather-image").attr("src", dayThreeIconString);
     $("#day-three-description").text(dayThreeDescription);
-    $("#day-three-temp").text(`${dayThreeTempF} F`);
-    $("#day-three-humidity").text(`Humidity ${dayThreeHumidity}%`);
+    $("#day-three-temp").html(`<span>${dayThreeTempF}\&#176 F</span>`);
+    $("#day-three-humidity").text(`H ${dayThreeHumidity}%`);
   }
 
   // DAY 4 OF FIVE DAY \\
@@ -260,8 +263,8 @@ $(document).ready(function () {
     let dayFourIconString = `http://openweathermap.org/img/wn/${dayFourIcon}@2x.png`;
     $("#day-four-weather-image").attr("src", dayFourIconString);
     $("#day-four-description").text(dayFourDescription);
-    $("#day-four-temp").text(`${dayFourTempF} F`);
-    $("#day-four-humidity").text(`Humidity ${dayFourHumidity}%`);
+    $("#day-four-temp").html(`<span>${dayFourTempF}\&#176 F</span>`);
+    $("#day-four-humidity").text(`H ${dayFourHumidity}%`);
   }
 
   // DAY 5 OF FIVE DAY \\
@@ -276,8 +279,8 @@ $(document).ready(function () {
     let dayFiveIconString = `http://openweathermap.org/img/wn/${dayFiveIcon}@2x.png`;
     $("#day-five-weather-image").attr("src", dayFiveIconString);
     $("#day-five-description").text(dayFiveDescription);
-    $("#day-five-temp").text(`${dayFiveTempF} F`);
-    $("#day-five-humidity").text(`Humidity ${dayFiveHumidity}%`);
+    $("#day-five-temp").html(`<span>${dayFiveTempF}\&#176 F</span>`);
+    $("#day-five-humidity").text(`H ${dayFiveHumidity}%`);
   }
 
   // BUTTON TO CLEAR LOCAL STORAGE \\
