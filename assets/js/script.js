@@ -2,12 +2,21 @@ $(document).ready(function () {
   //TODAYS CURRENT DATE
   let currentDate = moment().format("L");
 
-  let defaultCity = "Minneapolis";
+  //BUILD ARRAY FOR EACH ADDED CITY \\
+  let citiesArr = JSON.parse(localStorage.getItem("citiesArr")) || [];
+
+  let defaultCity = citiesArr[citiesArr.length - 1] ?? "Minneapolis";
 
   let cityName;
 
   // KELVIN TO FAHRENHEIT FUNCTION \\
   const newTempF = (input) => Math.trunc(((input - 273.15) * 9) / 5 + 32);
+
+  // BUILD BUTTONS ON PAGE LOAD \\
+  buildButtons();
+
+  //RUN API ON PAGE LOAD WITH LAST CITY \\
+  getWeather(defaultCity);
 
   $("#search-submit").on("click", function (event) {
     event.preventDefault();
@@ -18,7 +27,19 @@ $(document).ready(function () {
     if (cityName === "") {
       cityName = defaultCity;
     }
+    getWeather(cityName);
 
+    //BUILD CITY ARRAY \\
+    citiesArr.push(cityName);
+
+    //LOCAL STORAGE
+    localStorage.setItem("citiesArr", JSON.stringify(citiesArr));
+
+    //CALL FUNCTION TO ADD CITY BUTTONS \\
+    buildButtons();
+  });
+
+  function getWeather(cityName) {
     //API KEY \\
     let APIKey = "3a623ea6ade278ada9b6b26990b8755d";
 
@@ -65,18 +86,9 @@ $(document).ready(function () {
       dayFive(fiveResponse);
     });
 
-    //BUILD CITY ARRAY \\
-    citiesArr.push(cityName);
-
-    //CALL FUNCTION TO ADD CITY BUTTONS \\
-    buildButtons();
-
     // CLEAR SEARCH TEXT BOX \\
     document.getElementById("city-name-input").value = "";
-  });
-
-  //BUILD ARRAY FOR EACH ADDED CITY \\
-  let citiesArr = [];
+  }
 
   // BUILD BUTTONS FROM SEARCH BAR \\
   function buildButtons() {
@@ -126,7 +138,9 @@ $(document).ready(function () {
     // CURRENT TEMPERATURE DISPLAY \\
     let currentCityTempDisplay = $("#current-temperature");
     let currentTempF = newTempF(currentResponse.main.temp);
-    currentCityTempDisplay.text(`Temperature ${currentTempF}F`);
+    currentCityTempDisplay.html(
+      `<span>Temperature ${currentTempF}\&#176 F</span>`
+    );
 
     // CURRENT HUMIDITY DISPLAY \\
     let currentCityHumidity = $("#current-humidity");
@@ -180,6 +194,7 @@ $(document).ready(function () {
   // GENERATED BUTTONS CITY NAME \\
   function activateNewButton() {
     let addedCity = $(this).attr("data-name");
+    getWeather(addedCity);
     console.log(addedCity);
     return addedCity;
   }
