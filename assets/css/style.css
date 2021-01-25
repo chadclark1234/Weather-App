@@ -35,6 +35,10 @@ h1 {
 #current-div-display {
   background-color: #4b9ffa;
   color: white;
+  margin-bottom: 1rem;
+}
+#current-uv-index {
+  color: white;
 }
 p {
   line-height: 40%;
@@ -45,7 +49,7 @@ p {
 }
 .forecast {
   min-height: 14rem;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
   background-color: #007bff !important;
   color: white;
   text-align: center;
