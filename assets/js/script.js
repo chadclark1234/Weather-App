@@ -36,14 +36,14 @@ $(document).ready(function () {
       lat = currentResponse.coord.lat;
       lon = currentResponse.coord.lon;
       // URL TO API FOR UV INDEX \\
-      const uvQueryURL = `http://api.openweathermap.org/data/2.5/uvi/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+      const uvQueryURL = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`;
       // UV INDEX API \\
       $.ajax({
         url: uvQueryURL,
         method: "GET",
       }).then(function (uvResponse) {
         console.log(uvResponse);
-        let currentUVindex = Math.trunc(uvResponse[0]["value"]);
+        let currentUVindex = Math.trunc(uvResponse["value"]);
         currentUVdisplay(currentUVindex);
       });
 
@@ -154,12 +154,14 @@ $(document).ready(function () {
   const currentUVdisplay = (currentUVindex) => {
     console.log(currentUVindex);
     let uvDisplay = $("#current-uv-index");
+    uvDisplay.css("color", "white");
     if (currentUVindex <= 2) {
       uvDisplay.text(` UV Index: ${currentUVindex} `);
       uvDisplay.css("background-color", "green");
     } else if (currentUVindex > 2 && currentUVindex <= 5) {
       uvDisplay.text(` UV Index: ${currentUVindex} `);
       uvDisplay.css("background-color", "yellow");
+      uvDisplay.css("color", "black");
     } else if (currentUVindex > 5 && currentUVindex <= 7) {
       uvDisplay.text(` UV Index: ${currentUVindex} `);
       uvDisplay.css("background-color", "orange");
