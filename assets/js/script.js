@@ -216,7 +216,7 @@ $(document).ready(function () {
     $("#day-two-weather-image").attr("src", dayTwoIconString);
     $("#day-two-description").text(dayTwoDescription);
     $("#day-two-temp").html(`<span>${dayTwoTempF}\&#176 F</span>`);
-    $("#day-two-humidity").text(` ${dayTwoHumidity}%`);
+    $("#day-two-humidity").text(`H ${dayTwoHumidity}%`);
   }
 
   // // DAY 3 OF FIVE DAY \\
