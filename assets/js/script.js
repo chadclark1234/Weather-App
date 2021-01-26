@@ -151,7 +151,7 @@ $(document).ready(function () {
     // DISPLAY ICON \\
     let currentImage = $("#current-weather-image");
     let currentIcon = currentResponse.weather[0].icon;
-    let iconSource = `http://openweathermap.org/img/wn/${currentIcon}@2x.png`;
+    let iconSource = `https://openweathermap.org/img/wn/${currentIcon}@2x.png`;
     currentImage.attr("src", iconSource);
   }
 
