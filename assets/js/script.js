@@ -197,7 +197,7 @@ $(document).ready(function () {
     let dayOneHumidity = fiveResponse.daily[0]["humidity"];
     let dayOneTempF = newTempF(dayOneTempK);
     $("#day-one-date").text(moment().add("1", "day").format("MM-DD-YYYY"));
-    let dayOneIconString = `http://openweathermap.org/img/wn/${dayOneIcon}@2x.png`;
+    let dayOneIconString = `https://openweathermap.org/img/wn/${dayOneIcon}@2x.png`;
     $("#day-one-weather-image").attr("src", dayOneIconString);
     $("#day-one-description").text(dayOneDescription);
     $("#day-one-temp").html(`<span>${dayOneTempF}\&#176 F</span>`);
@@ -212,7 +212,7 @@ $(document).ready(function () {
     let dayTwoHumidity = fiveResponse.daily[1]["humidity"];
     let dayTwoTempF = newTempF(dayTwoTempK);
     $("#day-two-date").text(moment().add("2", "day").format("MM-DD-YYYY"));
-    let dayTwoIconString = `http://openweathermap.org/img/wn/${dayTwoIcon}@2x.png`;
+    let dayTwoIconString = `https://openweathermap.org/img/wn/${dayTwoIcon}@2x.png`;
     $("#day-two-weather-image").attr("src", dayTwoIconString);
     $("#day-two-description").text(dayTwoDescription);
     $("#day-two-temp").html(`<span>${dayTwoTempF}\&#176 F</span>`);
@@ -228,7 +228,7 @@ $(document).ready(function () {
     let dayThreeHumidity = fiveResponse.daily[2]["humidity"];
     let dayThreeTempF = newTempF(dayThreeTempK);
     $("#day-three-date").text(moment().add("3", "day").format("MM-DD-YYYY"));
-    let dayThreeIconString = `http://openweathermap.org/img/wn/${dayThreeIcon}@2x.png`;
+    let dayThreeIconString = `https://openweathermap.org/img/wn/${dayThreeIcon}@2x.png`;
     $("#day-three-weather-image").attr("src", dayThreeIconString);
     $("#day-three-description").text(dayThreeDescription);
     $("#day-three-temp").html(`<span>${dayThreeTempF}\&#176 F</span>`);
@@ -243,7 +243,7 @@ $(document).ready(function () {
     let dayFourHumidity = fiveResponse.daily[3]["humidity"];
     let dayFourTempF = newTempF(dayFourTempK);
     $("#day-four-date").text(moment().add("4", "day").format("MM-DD-YYYY"));
-    let dayFourIconString = `http://openweathermap.org/img/wn/${dayFourIcon}@2x.png`;
+    let dayFourIconString = `https://openweathermap.org/img/wn/${dayFourIcon}@2x.png`;
     $("#day-four-weather-image").attr("src", dayFourIconString);
     $("#day-four-description").text(dayFourDescription);
     $("#day-four-temp").html(`<span>${dayFourTempF}\&#176 F</span>`);
@@ -258,7 +258,7 @@ $(document).ready(function () {
     let dayFiveHumidity = fiveResponse.daily[4]["humidity"];
     let dayFiveTempF = newTempF(dayFiveTempK);
     $("#day-five-date").text(moment().add("5", "day").format("MM-DD-YYYY"));
-    let dayFiveIconString = `http://openweathermap.org/img/wn/${dayFiveIcon}@2x.png`;
+    let dayFiveIconString = `https://openweathermap.org/img/wn/${dayFiveIcon}@2x.png`;
     $("#day-five-weather-image").attr("src", dayFiveIconString);
     $("#day-five-description").text(dayFiveDescription);
     $("#day-five-temp").html(`<span>${dayFiveTempF}\&#176 F</span>`);
